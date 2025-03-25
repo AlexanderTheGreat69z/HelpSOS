@@ -15,8 +15,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@tailwindcss/vite": "^4.0.14",
+    "axios": "^1.8.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
     "firebase": "^11.4.0",
     "install": "^0.13.0",
+    "mongoose": "^8.13.0",
     "npm": "^11.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -26,6 +31,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.13.13",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
@@ -33,8 +40,23 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"
-  }
+  },
+  "description": "HelpSOS is a web application that I made just for fun just to try out a couple new things I wanted to try. The SOS part stands for 'Study Organization Software'. I specificly call this an SOS and added a 'Help' tag into it because I'm referencing how people always try to send a message with 'SOS' when asking for urgent help. I add this because organizing studies can be something students dont normally consider and end up stranded, leading them to ask for help even though they made themselves lost by not organizing their studies. So, I made this web app with that name to help other students like me to study a little bit easier by utilizing the tools provided in this website",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexanderTheGreat69z/HelpSOS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexanderTheGreat69z/HelpSOS/issues"
+  },
+  "homepage": "https://github.com/AlexanderTheGreat69z/HelpSOS#readme"
 }
