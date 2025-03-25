@@ -1,9 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SceneTitle from '../components/SceneTitle'
 import ExperienceContent from '../components/ExperienceContent'
-import { faPencil, faPlus } from '@fortawesome/free-solid-svg-icons'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import ModalSetup from '../components/ModalSetup'
 
 const ProfileScene = () => {
@@ -48,7 +48,7 @@ const ProfileScene = () => {
         <section>
             <SceneTitle title='Your Profile' />
             <div className={styles.container}>
-                <section className={styles.personal_id}>
+                <div className={styles.personal_id}>
                     <div className={styles.prof_pic}>
                         <img src={default_profIcon} className={styles.pic_img} />
                         {/* <button className={styles.pic_edit_btn}> Edit <FontAwesomeIcon icon={faPencil} className='ml-2'/></button> */}
@@ -75,8 +75,8 @@ const ProfileScene = () => {
                             </ul>
                         </div>
                     </div>
-                </section>
-                <section className={styles.exp_section}>
+                </div>
+                <div className={styles.exp_section}>
                     <h1 className={styles.exp_header}>My Experiences</h1>
                     <div className={styles.exp_container}>
                         {expData.map(({title, content}, index) => <ExperienceContent key={index} title={title} content={content}/>)}
@@ -87,7 +87,7 @@ const ProfileScene = () => {
                             <h1>Add more experiences to your profile!</h1>
                         </button>
                     </div>
-                </section>
+                </div>
             </div>
             <ModalSetup visible={addExpModalView} onXButton={() => setAEMview(false)} content={<AddExpModal />} title="Add Experience"/>
         </section>
@@ -120,7 +120,10 @@ const AddExpModal = () => {
                 </div>
                 <div>
                     <label><b>Contributions</b></label>
-                    <button className={styles.btn} onClick={() => setContributions(contributions + 1)}>+</button>
+                    <button className={styles.btn} onClick={(e) => {
+                        e.preventDefault()
+                        setContributions(contributions + 1)
+                        }}>+</button>
                     <br />
                     <div>
                         {Array.from({length: contributions},(_, i) => <ContributionInput key={i}/>)}
