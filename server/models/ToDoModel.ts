@@ -9,15 +9,15 @@ const ToDoModel = mongoose.model("ToDo", ToDoSchema)
 
 const createToDo = async(req, res) => {
     try {
-        const { todo_task, todo_status="ongoing" } = req.body
+        const { todo_task } = req.body
 
-        if (!todo_task || !todo_status) {
+        if (!todo_task) {
             return res.status(400).json({ message: "Please fill in the required fields." })
         }
 
         const newTodo = await ToDoModel.create({
             todo_task,
-            todo_status
+            todo_status : "ongoing"
         });
 
         res.status(200).json({ message: "Created a to-do list successfully!", newTodo })

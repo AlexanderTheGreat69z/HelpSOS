@@ -15,6 +15,7 @@ const URI = process.env.MONGO_URI
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
+
 app.use("/service/todo", todo_router)
 
 mongoose.set("strictQuery", true)
