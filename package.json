@@ -7,7 +7,6 @@
     "server": "cd server && npm run dev",
     "client": "vite",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -25,6 +24,7 @@
     "express": "^4.21.2",
     "firebase": "^11.4.0",
     "install": "^0.13.0",
+    "mongodb": "^6.15.0",
     "mongoose": "^8.13.0",
     "npm": "^11.2.0",
     "react": "^19.0.0",
