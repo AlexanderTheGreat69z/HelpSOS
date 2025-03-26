@@ -43,16 +43,16 @@ const ToDoScene = () => {
             <div className={styles.container}>
                 <div className={styles.todoList}>
                     <div className={styles.todoItems}>
-                        {toDos.map(({id, todo_task, todo_status}) => <ToDoItem key={id} task={todo_task} 
+                        {toDos.map(({_id, todo_task, todo_status}) => <ToDoItem key={_id} task={todo_task} 
                         onCheck = {() => {
                             console.log("Checkedd!")
                         }}
                         onButtonClick={() => {
                             setViewDeleteModal(true)
-                            setQFD_ID(id)
+                            setQFD_ID(_id)
                         }} 
                         onCheckedClick={async () => {
-                            await deleteToDo(id)
+                            await deleteToDo(_id)
                             renderToDo()
                         }}/>)}
                         <button className={styles.addBtn} onClick={() => setViewToDoModal(true)}>
