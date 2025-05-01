@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react';
-import { getToDo, addToDo, deleteToDo } from '../api';
+import { getToDo, addToDo, deleteToDo } from '../api.ts';
 
-import SceneTitle from '../components/SceneTitle'
+import SceneTitle from '../components/SceneTitle.tsx'
 import ToDoItem from '../components/ToDoItem'
 import ModalSetup from '../components/ModalSetup';
 
@@ -36,14 +36,14 @@ const ToDoScene = () => {
         todoItems: "",
         addBtn: "transition-colors w-full bg-zinc-900 hover:bg-zinc-800 py-2 rounded-xl my-5",
     }
-
+    
     return (
         <section>
             <SceneTitle title='Your To-Do List' />
             <div className={styles.container}>
                 <div className={styles.todoList}>
                     <div className={styles.todoItems}>
-                        {toDos.map(({_id, todo_task, todo_status}) => <ToDoItem key={_id} task={todo_task} 
+                        {toDos.map(({_id, todo_task}) => <ToDoItem key={_id} task={todo_task} 
                         onCheck = {() => {
                             console.log("Checkedd!")
                         }}
