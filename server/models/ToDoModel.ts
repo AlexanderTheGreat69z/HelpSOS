@@ -1,13 +1,14 @@
 import mongoose from "mongoose"
+import { Request, Response } from "express";
 
 const ToDoSchema = new mongoose.Schema({
     todo_task: { type: String, required: true},
     todo_status: { type: String, default: "ongoing"},
 });
 
-const ToDoModel = mongoose.model("ToDo", ToDoSchema)
+const ToDo = mongoose.model("ToDo", ToDoSchema)
 
-const createToDo = async(req, res) => {
+const createToDo = async(req:Request, res:Response) => {
     try {
         const { todo_task } = req.body
 
@@ -15,7 +16,7 @@ const createToDo = async(req, res) => {
             return res.status(400).json({ message: "Please fill in the required fields." })
         }
 
-        const newTodo = await ToDoModel.create({
+        const newTodo = await ToDo.create({
             todo_task,
             todo_status : "ongoing"
         });
@@ -26,16 +27,16 @@ const createToDo = async(req, res) => {
     }
 }
 
-const getToDos = async (req, res) => {
+const getToDos = async (req:Request, res:Response) => {
     try {
-        const todos = await ToDoModel.find();
+        const todos = await ToDo.find();
         res.status(200).json(todos);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
 };
 
-const updateToDo = async (req, res) => {
+const updateToDo = async (req:Request, res:Response) => {
     try {
         const { id } = req.params;
         const { todo_task, todo_status } = req.body;
@@ -44,7 +45,7 @@ const updateToDo = async (req, res) => {
             todo_task,
             todo_status,
         }
-        const updatedTodo = await ToDoModel.findByIdAndUpdate(id, updateData, { new: true });
+        const updatedTodo = await ToDo.findByIdAndUpdate(id, updateData, { new: true });
 
         if (!updatedTodo) {
             return res.status(404).json({ message: "To-do not found." });
@@ -56,10 +57,10 @@ const updateToDo = async (req, res) => {
     }
 };
 
-const deleteToDo = async (req, res) => {
+const deleteToDo = async (req:Request, res:Response) => {
     try {
         const { id } = req.params;
-        const deletedTodo = await ToDoModel.findByIdAndDelete(id);
+        const deletedTodo = await ToDo.findByIdAndDelete(id);
 
         if (!deletedTodo) {
             return res.status(404).json({ message: "To-do not found." });
