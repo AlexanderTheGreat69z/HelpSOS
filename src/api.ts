@@ -31,21 +31,18 @@ const deleteToDo = async (id: string) => {
     }
 }
 
-const registerUser = async (username:string, password:string) => {
+const registerUser = async (username:string, email:string, password:string) => {
     try {
-        const res = await axios.post(URL + "/auth/register", { username, password })
+        const res = await axios.post(URL + "/auth/register", { username, email, password })
         return res.data;
     } catch (err) {
         console.error("Oops, There was a problem signing you in ", err);
     }
 }
 
-const userLogin = async (username:string, password:string) => {
+const userLogin = async (identifier:string, password:string) => {
     try {
-        const res = await axios.post(URL + "/auth/login", {
-            username, 
-            password
-        })
+        const res = await axios.post(URL + "/auth/login", { identifier, password })
         return res.data;
     } catch (err) {
         console.error("Error fetching data:", err);

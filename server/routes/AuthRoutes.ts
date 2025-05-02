@@ -16,8 +16,9 @@ auth_router.get("/dashboard", isAuthenticated, async (req:Request, res:Response)
 })
 
 auth_router.post("/login", <RequestHandler>(async (req:Request, res:Response) => {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const { identifier, password } = req.body;
+    const user = await User.findOne({ username: identifier }) ?? await User.findOne({ email: identifier });
+    console.log(user)
     if (!user || !bcrypt.compareSync(password, user.password)) {
             return res.status(401).json({ message: 'Invalid credentials' });
     }

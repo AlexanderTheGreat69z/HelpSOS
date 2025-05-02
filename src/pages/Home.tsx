@@ -5,7 +5,7 @@ import HomeHeader from '../components/HomeHeader'
 function Home() {
     const navigate = useNavigate()
     const styles = {
-        page: "bg-no-repeat bg-cover bg-center h-screen",
+        page: "bg-[url(src/assets/home-bg.avif)] bg-no-repeat bg-cover bg-center h-screen",
         content: "mx-auto sm:w-4/5 h-9/10",
         
         header: "flex justify-center h-24 sm:h-1/10",

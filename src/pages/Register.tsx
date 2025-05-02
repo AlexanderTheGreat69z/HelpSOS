@@ -1,7 +1,8 @@
 import { faG } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { registerUser } from '../api'
 
 function Register() {
     const navigate = useNavigate()
@@ -10,8 +11,7 @@ function Register() {
     useEffect(() => {}, [password])
 
     const [passConfirmed, setConfirmation] = useState<boolean>(true)
-    useEffect(() => console.log(passConfirmed), [passConfirmed])
-
+    useEffect(() => {}, [passConfirmed])
 
     const handlePassInput = (e:ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
@@ -23,6 +23,22 @@ function Register() {
         }
         else {
             setConfirmation(false)
+        }
+    }
+
+    const handleSubmit = async (e:FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const form = new FormData(e.currentTarget)
+        const data = {
+            username    : form.get("username") as string,
+            email       : form.get("email") as string,
+            password    : form.get("password") as string,
+        }
+        if (!passConfirmed || Object.values(data).some(value => !value)){
+            alert("Please enter your credentials")
+        }
+        else{
+            await registerUser(data.username, data.email, data.password)
         }
     }
 
@@ -44,6 +60,7 @@ function Register() {
         google: "bg-blue-500",
         
         invalid: "mt-1 text-right text-red-400 text-sm font-thin",
+        alt_route: "cursor-pointer text-blue-700 hover:font-semibold",
     }
     return (
         <main className={styles.page}>
@@ -51,23 +68,27 @@ function Register() {
                 <div className={styles.logo}>
                     <img src="src/assets/logo.png" alt="" />
                 </div>
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles.text}>
                         <h1 className={styles.heading}>Welcome to HelpSOS</h1>
                         <p>Please enter your credentials</p>
                     </div>
                     <div>
                         <div className={styles.input_field}>
+                            <label className={styles.label} htmlFor="username">Username</label>
+                            <input id="username" name="username" type="text" className={styles.input} placeholder='Enter your username here' required />
+                        </div>
+                        <div className={styles.input_field}>
                             <label className={styles.label} htmlFor="email">Email</label>
-                            <input id="email" type="email" className={styles.input} required/>
+                            <input id="email" name="email" type="email" className={styles.input} placeholder='Enter email' required/>
                         </div>
                         <div className={styles.input_field}>
                             <label className={styles.label} htmlFor="password">Password</label>
-                            <input id="password" type="password" className={styles.input} onChange={handlePassInput} required/>
+                            <input id="password" name="password" type="password" className={styles.input} onChange={handlePassInput} placeholder='Enter custom password' required/>
                         </div>
                         <div className={styles.input_field}>
                             <label className={styles.label} htmlFor="pass_conf">Confirm Password</label>
-                            <input id="pass_conf" type="password" className={styles.input} onChange={handleConfirmation} required/>
+                            <input id="pass_conf" type="password" className={styles.input} onChange={handleConfirmation} placeholder='Enter password again' required/>
                             {!passConfirmed ? <span className={styles.invalid}>Password doesn't match</span> : null}
                         </div>
                     </div>
@@ -77,7 +98,7 @@ function Register() {
                     </div>
                 </form>
                 <div className='mx-auto my-3'>
-                    <p>Already have an account? <button className='cursor-pointer' onClick={() => navigate('/login')}>Log in here!</button></p>
+                    <p>Already have an account? <button className={styles.alt_route} onClick={() => navigate('/login')}><u>Log in here!</u></button></p>
                 </div>
             </div>
         </main>
