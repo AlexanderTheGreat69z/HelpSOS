@@ -16,6 +16,7 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT
 const URI = process.env.MONGO_URI
+const SECRET = process.env.SESSION_SECRET
 
 //-----------------------------------------------------------//
 app.use(express.json())
@@ -23,12 +24,14 @@ app.use(cookieParser())
 app.use(express.urlencoded({extended:true}))
 
 app.use(session({
-    secret: 'KEY',
+    secret: SECRET as string,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false,
-        maxAge: 100 * 60 * 60
+        httpOnly: true,
+        secure  : true,
+        sameSite: true,
+        maxAge  : 100 * 60 * 60
     }
 }))
 app.use(cors({

@@ -2,7 +2,7 @@ import { faG } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { userLogin } from '../api'
+import { userLogin } from '../api/api'
 
 function Login() {
     const navigate = useNavigate()
@@ -39,7 +39,7 @@ function Login() {
         submit: "bg-black hover:bg-neutral-800",
         google: "bg-blue-500",
 
-        alt_route: "cursor-pointer text-blue-700 hover:font-semibold",
+        alt_route: "cursor-pointer text-blue-700 hover:text-blue-500",
     }
 
     return (
@@ -69,7 +69,7 @@ function Login() {
                     </div>
                 </form>
                 <div className='mx-auto my-3 text-center'>
-                    <p>Don't have an account? <button className='cursor-pointer' onClick={() => navigate('/register')}>Register here!</button></p>
+                    <p>Don't have an account? <button className={styles.alt_route} onClick={() => navigate('/register')}><u>Register here!</u></button></p>
                     <p>Forgot password? <button className={styles.alt_route}><u>Click here!</u></button></p>
                 </div>
             </div>

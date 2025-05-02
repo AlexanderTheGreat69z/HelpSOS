@@ -2,7 +2,7 @@ import { faG } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { registerUser } from '../api'
+import { registerUser } from '../api/api'
 
 function Register() {
     const navigate = useNavigate()
@@ -60,7 +60,7 @@ function Register() {
         google: "bg-blue-500",
         
         invalid: "mt-1 text-right text-red-400 text-sm font-thin",
-        alt_route: "cursor-pointer text-blue-700 hover:font-semibold",
+        alt_route: "cursor-pointer text-blue-700 hover:text-blue-500",
     }
     return (
         <main className={styles.page}>
