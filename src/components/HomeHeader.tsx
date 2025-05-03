@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import logo from '../assets/logo.png'
 import { faCrown } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 
@@ -36,7 +35,7 @@ const HomeHeader = () => {
     return (
         <div className={styles.container}>
             <div className={styles.logo}>
-                <img src={logo} alt=""  className={styles.logo_img}/>
+                <img src={'src/assets/logo.png'} alt=""  className={styles.logo_img}/>
             </div>
             <nav className={styles.nav}>
                 {nav_routes.map(({name, route}) => <button className={styles.navItem} onClick={() => navigate(route)}>{name}</button>)}

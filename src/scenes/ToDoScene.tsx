@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react';
-import { getToDo, addToDo, deleteToDo } from '../api/api.ts';
+import { getToDo, addToDo, deleteToDo } from '../api/ToDoAPI.ts';
 
 import SceneTitle from '../components/SceneTitle.tsx'
 import ToDoItem from '../components/ToDoItem'

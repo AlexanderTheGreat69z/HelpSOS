@@ -2,7 +2,7 @@ import { faG } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { userLogin } from '../api/api'
+import { getUserData, userLogin } from '../api/AuthAPI'
 
 function Login() {
     const navigate = useNavigate()
@@ -18,12 +18,14 @@ function Login() {
             alert("Please enter your credentials")
         }
         else {
-            await userLogin(data.identifier, data.password)
+            const login = await userLogin(data.identifier, data.password)
+            if (login.success) navigate('/dashboard')
+            console.log(await getUserData())
         }
     }
 
     const styles = {
-        page: "bg-[url(src/assets/home-img1.jpg)] bg-no-repeat bg-cover bg-left h-screen",
+        page: "bg-[url(src/assets/home-img1.jpg)] bg-no-repeat bg-cover bg-right h-screen",
         content: "bg-white md:w-2/3 lg:w-1/2 h-full p-10 flex flex-col space-y-10",
     
         logo: "md:w-1/3 mx-10 md:mx-0",
@@ -50,7 +52,7 @@ function Login() {
                 </div>
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles.text}>
-                        <h1 className={styles.heading}>Welcome to HelpSOS</h1>
+                        <h1 className={styles.heading}>Welcome back!</h1>
                         <p>Please enter your credentials</p>
                     </div>
                     <div>

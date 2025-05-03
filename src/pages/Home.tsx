@@ -1,9 +1,24 @@
 import { useNavigate } from 'react-router-dom'
 import HomeHeader from '../components/HomeHeader'
+import { useEffect } from 'react'
+import { getUserData } from '../api/AuthAPI'
 
 
 function Home() {
     const navigate = useNavigate()
+    useEffect(() => {
+        const reroute = async () => {
+            try {
+                const user = await getUserData()
+                if (user) navigate("/dashboard")
+            }
+            catch (err) {
+                navigate("/login")
+            }
+        }
+        reroute()
+    },[])
+
     const styles = {
         page: "bg-[url(src/assets/home-bg.avif)] bg-no-repeat bg-cover bg-center h-screen",
         content: "mx-auto sm:w-4/5 h-9/10",

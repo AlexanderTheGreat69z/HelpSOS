@@ -2,7 +2,7 @@ import { faG } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { registerUser } from '../api/api'
+import { getUserData, registerUser, userLogin } from '../api/AuthAPI'
 
 function Register() {
     const navigate = useNavigate()
@@ -38,12 +38,16 @@ function Register() {
             alert("Please enter your credentials")
         }
         else{
-            await registerUser(data.username, data.email, data.password)
+            const register = await registerUser(data.username, data.email, data.password)
+            if (register.success) {
+                await userLogin(data.username, data.password)
+                console.log(await getUserData())
+            }
         }
     }
 
     const styles = {
-        page: "bg-[url(src/assets/home-img1.jpg)] bg-no-repeat bg-cover bg-left h-screen",
+        page: "bg-[url(src/assets/home-img1.jpg)] bg-no-repeat bg-cover bg-right h-screen",
         content: "bg-white md:w-2/3 lg:w-1/2 h-full p-10 flex flex-col space-y-10",
 
         logo: "md:w-1/3 mx-10 md:mx-0",

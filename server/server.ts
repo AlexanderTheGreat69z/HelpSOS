@@ -17,7 +17,6 @@ const app = express()
 const PORT = process.env.PORT
 const URI = process.env.MONGO_URI
 const SECRET = process.env.SESSION_SECRET
-
 //-----------------------------------------------------------//
 app.use(express.json())
 app.use(cookieParser())
@@ -29,8 +28,8 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        secure  : true,
-        sameSite: true,
+        secure  : false,
+        sameSite: "lax",
         maxAge  : 100 * 60 * 60
     }
 }))
