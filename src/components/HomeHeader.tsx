@@ -38,7 +38,7 @@ const HomeHeader = () => {
                 <img src={'src/assets/logo.png'} alt=""  className={styles.logo_img}/>
             </div>
             <nav className={styles.nav}>
-                {nav_routes.map(({name, route}) => <button className={styles.navItem} onClick={() => navigate(route)}>{name}</button>)}
+                {nav_routes.map(({name, route}, i) => <button key={i} className={styles.navItem} onClick={() => navigate(route)}>{name}</button>)}
             </nav>
             <div className={styles.buttons}>
                 <button className={styles.btn + styles.signIn} onClick={() => navigate('/register')}>Sign Up</button>

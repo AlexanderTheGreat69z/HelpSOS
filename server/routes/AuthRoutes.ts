@@ -9,7 +9,7 @@ const isAuthenticated:RequestHandler = (req:Request, res:Response, next:NextFunc
     if (req.session.userId) {
         return next();
     } else {
-        return void res.status(401).json({ message: 'Unauthorized' });
+        return void res.status(401);
     }
 }
 

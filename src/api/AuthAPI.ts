@@ -24,7 +24,7 @@ const userLogin = async (identifier:string, password:string) => {
 
 const userLogout = async () => {
     try {
-        const res = await axios.post(URL + "/logout", { withCredentials: true })
+        const res = await axios.post(URL + "/logout", {}, { withCredentials: true })
         return { success: true, data: res.data };
     } catch (err) {
         console.error("Logout ERROR", err);
@@ -36,8 +36,8 @@ const getUserData = async () => {
     try {
         const res = await axios.get(URL + "/get_data", { withCredentials: true });
         return res.data
-    } catch (err) {
-        console.error("Error fetching data:", err);
+    } catch (err:any) {
+        if (err.status !== 401) console.error("Error fetching data:", err);
         return null
     }
 }
