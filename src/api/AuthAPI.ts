@@ -34,7 +34,7 @@ const userLogout = async () => {
 
 const getUserData = async () => {
     try {
-        const res = await axios.get(URL + "/get_data", { withCredentials: true });
+        const res = await axios.get(URL + "/get-data", { withCredentials: true });
         return res.data
     } catch (err:any) {
         if (err.status !== 401) console.error("Error fetching data:", err);

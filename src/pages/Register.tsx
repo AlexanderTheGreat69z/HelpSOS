@@ -2,7 +2,7 @@ import { faG } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getUserData, registerUser, userLogin } from '../api/AuthAPI'
+import { registerUser, userLogin } from '../api/AuthAPI'
 
 function Register() {
     const navigate = useNavigate()
@@ -38,10 +38,11 @@ function Register() {
             alert("Please enter your credentials")
         }
         else{
+            console.log(data)
             const register = await registerUser(data.username, data.email, data.password)
             if (register.success) {
                 await userLogin(data.username, data.password)
-                console.log(await getUserData())
+                navigate('/dashboard')
             }
         }
     }
